@@ -65,8 +65,27 @@ html[data-theme="dark"] {
   a { text-decoration-thickness: 1px; text-underline-offset: 2px; }
 }
 
+/* --------------------------------------------------------------------------
+   18. Homepage / inner-page layout parity.
+
+   The theme lays the two layouts out differently: `.page` (the `single`
+   layout, used by the homepage and publication pages) gets susy's
+   `suffix(2 of 12)`, which compiles to ~210px of padding-right reserving room
+   for a right sidebar this site does not use. `.archive` (Publications,
+   Teaching, Projects…) has no such suffix. The result was a homepage content
+   column ~210px narrower than every other page.
+   -------------------------------------------------------------------------- */
+
+@media screen and (min-width: 64em) {
+  .page { padding-right: 0; }
+}
+
+/* The page title also rendered at two sizes, because `.archive` carries
+   font-size: 1.0625em while `.page__inner-wrap` does not — so an em-based
+   title inherited 19.125px on one and 18px on the other. Sizing in rem makes
+   it independent of whichever wrapper it lands in. */
 .page__title {
-  font-size: 2.05em;
+  font-size: 2.18rem;
   font-weight: 750;
   letter-spacing: -0.022em;
   line-height: 1.15;
@@ -267,6 +286,21 @@ html[data-theme="dark"] {
 /* --------------------------------------------------------------------------
    5. Projects — a responsive card grid.
    -------------------------------------------------------------------------- */
+
+/* Page intros sit directly above a full-width card grid. The 74ch reading
+   measure left a visible notch of empty space to their right, so these
+   specific paragraphs run the full column width instead. */
+/* Scoped with two classes deliberately: the base rule is
+   `.page__content > p, .archive > p { max-width: 74ch }` at (0,1,1), so a
+   single-class selector here would lose and the notch would remain. */
+.page__content .projects-intro,
+.archive .projects-intro,
+.page__content .teaching-section-note,
+.archive .teaching-section-note,
+.page__content .pub-scholar-note,
+.archive .pub-scholar-note {
+  max-width: none;
+}
 
 .projects-intro {
   margin-bottom: 1.8em !important;
@@ -514,7 +548,7 @@ html[data-theme="dark"] {
      <= 767px   phone:   single column, everything stacked            */
 
 @media screen and (max-width: 1023px) {
-  .page__title { font-size: 1.8em; }
+  .page__title { font-size: 1.8rem; }
 
   .page__content,
   .archive { font-size: 1em; }
