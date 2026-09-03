@@ -34,10 +34,10 @@ html[data-theme="dark"] {
   font-size: 1.0625em;
   line-height: 1.7;
 
-  > p,
-  > ul > li {
-    max-width: 74ch;
-  }
+  /* No reading-measure cap. A 74ch limit made body paragraphs stop well short
+     of the section rules, the Education list and the News panel, which all run
+     the full column — leaving a ragged right edge. Consistent alignment wins
+     here over the ideal line length. */
 
   p { margin: 0 0 1.1em; }
   ul, ol { margin-bottom: 1.3em; }
