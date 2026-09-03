@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Rakib Mahmud"
+# title: "Rakib Mahmud"
 author_profile: true
 redirect_from: 
   - /about/
