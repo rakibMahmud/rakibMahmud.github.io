@@ -1,0 +1,914 @@
+/* ==========================================================================
+   CUSTOM COMPONENTS — layered on top of the Academic Pages theme.
+
+   Additive only: no theme file is modified, so pulling upstream updates and
+   switching `site_theme` in _config.yml both keep working. All colours come
+   from the theme's own --global-* custom properties (plus a few --rm-* ones
+   defined for light and dark), so every built-in theme restyles this too.
+   ========================================================================== */
+
+/* The theme renders content inside `.page__content` for the `single` layout
+   (the homepage) and inside `.archive` for the `archive` layout (Publications,
+   Research, Projects, Teaching, CV). Rules meant for both must name both. */
+$rm-prose: ".page__content, .archive";
+
+:root {
+  --rm-card-bg   : #ffffff;
+  --rm-sunken    : #f6f8f9;
+  --rm-hairline  : #e2e8ec;
+  --rm-muted     : #6b7780;
+}
+
+html[data-theme="dark"] {
+  --rm-card-bg   : #4f4f4f;
+  --rm-sunken    : #454545;
+  --rm-hairline  : #5c5c5c;
+  --rm-muted     : #b9c0c5;
+}
+
+/* --------------------------------------------------------------------------
+   1. Base typography. The theme ships 16px/1.5, tight for research prose.
+   -------------------------------------------------------------------------- */
+
+#{$rm-prose} {
+  font-size: 1.0625em;
+  line-height: 1.7;
+
+  > p,
+  > ul > li {
+    max-width: 74ch;
+  }
+
+  p { margin: 0 0 1.1em; }
+  ul, ol { margin-bottom: 1.3em; }
+  li { margin-bottom: 0.35em; line-height: 1.62; }
+
+  /* Markdown "Heading\n======" compiles to <h1>, so section headings arrive
+     as h1 on some pages and h2 on others. Both are styled as section rules. */
+  h1:not(.page__title),
+  h2:not(.page__title) {
+    margin: 2.1em 0 0.75em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--rm-hairline);
+    font-size: 1.38em;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--global-text-color);
+  }
+
+  > h1:first-child,
+  > h2:first-child { margin-top: 0.4em; }
+
+  h3 { margin: 1.7em 0 0.5em; font-size: 1.1em; font-weight: 700; }
+
+  a { text-decoration-thickness: 1px; text-underline-offset: 2px; }
+}
+
+.page__title {
+  font-size: 2.05em;
+  font-weight: 750;
+  letter-spacing: -0.022em;
+  line-height: 1.15;
+  margin-bottom: 0.45em;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. Buttons. The theme sets `color: #fff !important` and `border: 0
+   !important` on .btn, so overrides must match that weight or the outlined
+   variant renders as white text on a white background.
+   -------------------------------------------------------------------------- */
+
+.page__content .btn,
+.archive .btn {
+  display: inline-block;
+  margin: 0 0.5em 0.6em 0;
+  padding: 0.6em 1.1em;
+  border-radius: 6px;
+  font-size: 0.9em;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s ease-in-out;
+}
+
+.page__content .btn:hover,
+.archive .btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+}
+
+.page__content .btn--primary,
+.archive .btn--primary {
+  background-color: var(--global-base-color);
+  color: #fff !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. News — a fixed-height scrolling panel so a growing list never pushes
+   the rest of the homepage down.
+   -------------------------------------------------------------------------- */
+
+.news-scroll {
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 0.35em 1.1em 0.35em 0.9em;
+  border: 1px solid var(--rm-hairline);
+  border-radius: 8px;
+  background: var(--rm-card-bg);
+}
+
+.page__content .news-list,
+.archive .news-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page__content .news-list li,
+.archive .news-list li {
+  display: flex;
+  gap: 1em;
+  align-items: baseline;
+  margin: 0;
+  padding: 0.68em 0;
+  border-bottom: 1px solid var(--rm-hairline);
+  max-width: none;
+  line-height: 1.55;
+}
+
+.page__content .news-list li:last-child,
+.archive .news-list li:last-child { border-bottom: 0; }
+
+.news-date {
+  flex: 0 0 5.6em;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--rm-muted);
+  white-space: nowrap;
+}
+
+.news-text { font-size: 0.96em; }
+
+/* Keep the scrollbar visible but unobtrusive. */
+.news-scroll::-webkit-scrollbar { width: 9px; }
+.news-scroll::-webkit-scrollbar-track { background: transparent; }
+.news-scroll::-webkit-scrollbar-thumb {
+  background: #c8d0d6;
+  border-radius: 6px;
+  border: 2px solid var(--rm-card-bg);
+}
+.news-scroll::-webkit-scrollbar-thumb:hover { background: #aab4bc; }
+.news-scroll { scrollbar-width: thin; scrollbar-color: #c8d0d6 transparent; }
+
+/* --------------------------------------------------------------------------
+   4. Publications — figure thumbnail, title, authors, venue, link chips.
+   -------------------------------------------------------------------------- */
+
+.pub-scholar-note {
+  margin-bottom: 1.8em !important;
+  font-size: 0.95em;
+  color: var(--rm-muted);
+}
+
+.pub-entry {
+  display: flex;
+  gap: 1.6em;
+  align-items: flex-start;
+  padding: 1.7em 0;
+  border-bottom: 1px solid var(--rm-hairline);
+}
+
+.pub-entry:first-child { padding-top: 0.4em; }
+.pub-entry:last-child { border-bottom: 0; }
+
+.pub-thumb {
+  flex: 0 0 190px;
+}
+
+.pub-thumb img {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--rm-hairline);
+  border-radius: 6px;
+}
+
+.pub-thumb-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 130px;
+  border: 1px dashed var(--rm-hairline);
+  border-radius: 6px;
+  color: var(--rm-muted);
+  font-size: 0.9em;
+}
+
+.pub-body { flex: 1 1 auto; min-width: 0; }
+
+.page__content .pub-title,
+.archive .pub-title {
+  margin-bottom: 0.3em;
+  font-size: 1.14em;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.pub-title a {
+  color: var(--global-text-color);
+  text-decoration: none;
+}
+
+.pub-title a:hover {
+  color: var(--global-link-color);
+  text-decoration: underline;
+}
+
+.pub-authors {
+  margin-bottom: 0.22em;
+  font-size: 0.97em;
+  line-height: 1.5;
+}
+
+.pub-authors b {
+  color: var(--global-link-color);
+  font-weight: 700;
+}
+
+.pub-venue {
+  margin-bottom: 0.6em;
+  font-size: 0.95em;
+  font-style: italic;
+  color: var(--rm-muted);
+}
+
+.pub-links { display: flex; flex-wrap: wrap; gap: 0.45em; align-items: center; }
+
+.pub-chip {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  border-radius: 4px;
+  background: var(--rm-sunken);
+  font-size: 0.88em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.pub-chip:hover { background: var(--rm-hairline); text-decoration: none; }
+
+.pub-note {
+  font-size: 0.86em;
+  font-style: italic;
+  color: var(--rm-muted);
+}
+
+/* --------------------------------------------------------------------------
+   5. Projects — a responsive card grid.
+   -------------------------------------------------------------------------- */
+
+.projects-intro {
+  margin-bottom: 1.8em !important;
+  color: var(--rm-muted);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+  gap: 1.1em;
+  margin-bottom: 1em;
+}
+
+/* Cards carrying a paragraph of prose get a two-column grid, which roughly
+   doubles the line length. That is what lets their text be justified without
+   opening word gaps — a three-column card is about 28 characters wide, far
+   below the ~45 that justification needs. Playlist cards carry only a title,
+   so they stay three across. */
+.card-grid--prose {
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.3em 1.35em;
+  border: 1px solid var(--rm-hairline);
+  border-radius: 8px;
+  background: var(--rm-card-bg);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.card:hover {
+  border-color: var(--global-base-color);
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.07);
+}
+
+.page__content .card-title,
+.archive .card-title {
+  margin: 0 0 0.45em;
+  font-size: 1.06em;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.card-title a { color: var(--global-text-color); text-decoration: none; }
+.card-title a:hover { color: var(--global-link-color); text-decoration: underline; }
+
+.page__content .card-desc,
+.archive .card-desc {
+  flex: 1 1 auto;
+  margin: 0 0 1em;
+  max-width: none;
+  font-size: 0.94em;
+  line-height: 1.55;
+  color: var(--rm-muted);
+}
+
+.page__content .card-action,
+.archive .card-action { margin: 0 0 0.9em; }
+
+.card-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.55em 0.85em;
+  border: 1px solid var(--rm-hairline);
+  border-radius: 5px;
+  background: var(--rm-card-bg);
+  font-size: 0.9em;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.card-btn:hover {
+  border-color: var(--global-base-color);
+  text-decoration: none;
+}
+
+.page__content .card-foot,
+.archive .card-foot {
+  margin: 0;
+  padding-top: 0.75em;
+  border-top: 1px solid var(--rm-hairline);
+  max-width: none;
+  font-size: 0.84em;
+  color: var(--rm-muted);
+}
+
+/* --------------------------------------------------------------------------
+   6. Research experience and teaching lists.
+   -------------------------------------------------------------------------- */
+
+.research-entry,
+.teaching-entry {
+  padding: 1.5em 0;
+  border-bottom: 1px solid var(--rm-hairline);
+}
+
+.research-entry:first-child,
+.teaching-entry:first-child { padding-top: 0.4em; }
+
+.research-entry:last-child,
+.teaching-entry:last-child { border-bottom: 0; }
+
+.page__content .research-title,
+.archive .research-title,
+.page__content .teaching-title,
+.archive .teaching-title {
+  margin: 0 0 0.35em !important;
+  padding-bottom: 0 !important;
+  border-bottom: 0 !important;
+  font-size: 1.14em !important;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.research-title a,
+.teaching-title a { color: var(--global-text-color); text-decoration: none; }
+
+.research-title a:hover,
+.teaching-title a:hover { color: var(--global-link-color); text-decoration: underline; }
+
+.page__content .research-meta,
+.archive .research-meta,
+.page__content .teaching-meta,
+.archive .teaching-meta {
+  margin: 0 0 0.3em;
+  max-width: none;
+  font-size: 0.93em;
+  color: var(--rm-muted);
+}
+
+.research-period { font-weight: 600; }
+.research-sep, .teaching-sep { margin: 0 0.5em; opacity: 0.55; }
+
+.page__content .research-advisor,
+.archive .research-advisor {
+  margin: 0 0 0.55em;
+  max-width: none;
+  font-size: 0.93em;
+  font-style: italic;
+  color: var(--rm-muted);
+}
+
+.page__content .research-excerpt,
+.archive .research-excerpt {
+  margin: 0 0 0.55em;
+  font-size: 0.99em;
+}
+
+.page__content .research-more,
+.archive .research-more {
+  margin: 0;
+  font-size: 0.92em;
+  font-weight: 600;
+}
+
+.research-more a { text-decoration: none; }
+.research-more a:hover { text-decoration: underline; }
+
+.page__content .teaching-courses,
+.archive .teaching-courses {
+  margin: 0.5em 0 0.8em;
+  padding-left: 1.15em;
+}
+
+.page__content .teaching-courses li,
+.archive .teaching-courses li {
+  margin-bottom: 0.18em;
+  font-size: 0.96em;
+  max-width: none;
+}
+
+.page__content .teaching-links,
+.archive .teaching-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45em;
+  margin: 0;
+  max-width: none;
+}
+
+/* --------------------------------------------------------------------------
+   7. Sidebar — the theme sets it at 12px, cramped for the amount it carries.
+   -------------------------------------------------------------------------- */
+
+.sidebar {
+  p, li { font-size: 0.875em; line-height: 1.55; }
+}
+
+.sidebar .author__avatar img {
+  max-width: 185px;
+  padding: 0;
+  border: 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
+}
+
+.sidebar .author__name {
+  margin-top: 0.9em;
+  margin-bottom: 0.25em;
+  font-size: 1.28em;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.sidebar .author__bio {
+  margin-top: 0.3em;
+  margin-bottom: 1.3em;
+  font-size: 0.875em;
+  line-height: 1.55;
+  color: var(--rm-muted);
+}
+
+.author__urls-wrapper li,
+.sidebar .author__urls li { padding: 0.32em 0; font-size: 0.875em; }
+
+.author__urls li a { text-decoration: none; }
+.author__urls li a:hover { text-decoration: underline; }
+
+.author__urls .fa,
+.author__urls .fab,
+.author__urls .fas,
+.author__urls .ai { color: var(--rm-muted); }
+
+/* --------------------------------------------------------------------------
+   8. Masthead and footer.
+   -------------------------------------------------------------------------- */
+
+.masthead { border-bottom: 1px solid var(--rm-hairline); }
+.masthead__inner-wrap { padding-top: 0.8em; padding-bottom: 0.8em; }
+.greedy-nav .site-title { font-weight: 750; letter-spacing: -0.018em; }
+.greedy-nav a { font-size: 0.95em; font-weight: 500; }
+
+.page__footer { margin-top: 3.2em; border-top: 1px solid var(--rm-hairline); }
+.page__footer footer { padding-top: 1.5em; padding-bottom: 1.5em; }
+
+/* --------------------------------------------------------------------------
+   9. Small screens.
+   -------------------------------------------------------------------------- */
+
+@media screen and (max-width: 1023px) {
+  .page__title { font-size: 1.8em; }
+
+  .page__content,
+  .archive { font-size: 1em; }
+
+  .pub-entry { flex-direction: column; gap: 0.9em; }
+  .pub-thumb { flex: 0 0 auto; max-width: 200px; }
+
+  .card-grid { grid-template-columns: 1fr; }
+
+  .page__content .news-list li,
+  .archive .news-list li { display: block; }
+
+  .news-date { display: block; margin-bottom: 0.15em; }
+
+  .news-scroll { max-height: 300px; }
+}
+
+/* --------------------------------------------------------------------------
+   10. Awards list (homepage) — same two-column rhythm as News.
+   -------------------------------------------------------------------------- */
+
+.page__content .award-list,
+.archive .award-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page__content .award-list li,
+.archive .award-list li {
+  display: flex;
+  gap: 1em;
+  align-items: baseline;
+  margin: 0;
+  padding: 0.7em 0;
+  border-bottom: 1px solid var(--rm-hairline);
+  max-width: none;
+  line-height: 1.6;
+}
+
+.page__content .award-list li:last-child,
+.archive .award-list li:last-child { border-bottom: 0; }
+
+.award-year {
+  flex: 0 0 7.2em;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--rm-muted);
+  white-space: nowrap;
+}
+
+.award-text { font-size: 0.96em; }
+
+/* --------------------------------------------------------------------------
+   11. CV page — the PDF itself, shown as rendered page images.
+   An <object>/<iframe> PDF embed is unreliable: iOS Safari and several other
+   mobile browsers refuse to render it and leave a blank box. Page images
+   render identically everywhere. See scripts/build-cv-preview.sh.
+   -------------------------------------------------------------------------- */
+
+.page__content .cv-actions,
+.archive .cv-actions { margin: 0 0 1.6em; max-width: none; }
+
+.cv-pages {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4em;
+}
+
+.cv-page {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rm-hairline);
+  border-radius: 6px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.07);
+  background: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   12. Teaching — section headings, video cards, per-course playlist links.
+   -------------------------------------------------------------------------- */
+
+.page__content .teaching-section-head,
+.archive .teaching-section-head {
+  margin: 2.1em 0 0.4em !important;
+  padding-bottom: 0.3em !important;
+  border-bottom: 1px solid var(--rm-hairline) !important;
+  font-size: 1.38em !important;
+  font-weight: 700;
+}
+
+.archive > .teaching-section-head:first-of-type { margin-top: 0.4em !important; }
+
+.page__content .teaching-section-note,
+.archive .teaching-section-note {
+  margin: 0 0 1.8em;
+  font-size: 1em;
+  color: var(--rm-muted);
+}
+
+.page__content .teaching-footnote,
+.archive .teaching-footnote {
+  margin-top: 1.6em;
+  font-size: 0.93em;
+  color: var(--rm-muted);
+}
+
+/* Playlist cards: the whole card is the link, with a cover image on top. */
+/* The theme sets `.page__content a { text-decoration: underline }` at (0,1,1);
+   because text-decoration on an ancestor draws through its descendants and
+   cannot be cancelled by a child, the underline has to be removed on the <a>
+   itself, at matching or higher specificity. */
+.page__content .card--video,
+.archive .card--video,
+.card--video {
+  padding: 0;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+
+.page__content .card--video:hover,
+.archive .card--video:hover,
+.card--video:hover { text-decoration: none; }
+
+/* The whole card is an <a>, so its children inherit the theme's link
+   underline. Suppress it on the text inside. */
+.card--video .card-title,
+.card--video .card-desc,
+.card--video .card-title a,
+.card--video .card-desc a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.page__content .card--video .card-title,
+.archive .card--video .card-title { color: var(--global-text-color); }
+
+.card--video:hover .card-title { color: var(--global-link-color); }
+
+.card-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-bottom: 1px solid var(--rm-hairline);
+}
+
+.card--video .card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding: 1.2em 1.3em 1.3em;
+}
+
+.page__content .card--video .card-title,
+.archive .card--video .card-title { margin-bottom: 0.3em; }
+
+.page__content .card--video .card-desc,
+.archive .card--video .card-desc { margin-bottom: 0.9em; }
+
+.page__content .card--video .card-action,
+.archive .card--video .card-action { margin: 0; }
+
+.card--video .card-btn { pointer-events: none; }
+
+.card--video:hover .card-btn {
+  border-color: var(--global-base-color);
+  color: var(--global-link-color);
+}
+
+.course-videos {
+  margin-left: 0.55em;
+  padding: 0.1em 0.5em;
+  border-radius: 4px;
+  background: var(--rm-sunken);
+  font-size: 0.84em;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.course-videos:hover { background: var(--rm-hairline); text-decoration: none; }
+
+/* --------------------------------------------------------------------------
+   13. Contact page — direct links and the message form.
+   -------------------------------------------------------------------------- */
+
+.page__content .contact-direct,
+.archive .contact-direct { margin: 1.4em 0 0.6em; max-width: none; }
+
+.contact-form {
+  margin: 0.4em 0 1.2em;
+  padding: 1.8em;
+  border-radius: 8px;
+  background: var(--rm-sunken);
+}
+
+.cf-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1em;
+  margin-bottom: 1.1em;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.95em 1.1em;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: var(--rm-card-bg);
+  color: var(--global-text-color);
+  font-family: inherit;
+  font-size: 0.98em;
+  line-height: 1.5;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.contact-form textarea { resize: vertical; min-height: 190px; }
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: var(--rm-muted); opacity: 1; }
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--global-base-color);
+}
+
+.cf-submit {
+  margin-top: 1.3em;
+  padding: 0.85em 2.1em;
+  border: 0;
+  border-radius: 4px;
+  background: var(--global-base-color);
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.cf-submit:hover {
+  background: var(--global-link-color-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.page__content .contact-note,
+.archive .contact-note { font-size: 0.93em; color: var(--rm-muted); }
+
+@media screen and (max-width: 767px) {
+  .cf-row { grid-template-columns: 1fr; }
+  .contact-form { padding: 1.3em; }
+
+  .page__content .award-list li,
+  .archive .award-list li { display: block; }
+
+  .award-year { display: block; margin-bottom: 0.15em; }
+}
+
+/* --------------------------------------------------------------------------
+   14. Justified alignment.
+   Matches the CV, which is typeset justified. `hyphens: auto` is essential
+   here — without it, justifying a narrow column (a project card, the sidebar
+   width) opens large word gaps and "rivers" of white space down the text.
+   Applied to running prose only; the structured rows below are reset to left
+   because justifying a two-column flex row or a row of chips looks broken.
+   -------------------------------------------------------------------------- */
+
+#{$rm-prose} {
+  p,
+  li {
+    text-align: justify;
+    -webkit-hyphens: auto;
+            hyphens: auto;
+  }
+}
+
+/* Justify needs roughly 45+ characters per line, or the slack has nowhere to
+   go but into the word spaces. Project cards are justified and widened to a
+   two-column grid below to give them that measure, rather than being left
+   ragged. */
+.card-desc,
+.research-excerpt,
+.teaching-section-note,
+.projects-intro,
+.pub-scholar-note {
+  text-align: justify;
+  -webkit-hyphens: auto;
+          hyphens: auto;
+}
+
+/* Structured rows, meta lines and chip groups stay left-aligned. */
+.page__content .news-list li,
+.archive .news-list li,
+.page__content .award-list li,
+.archive .award-list li,
+.page__content .teaching-meta,
+.archive .teaching-meta,
+.page__content .research-meta,
+.archive .research-meta,
+.page__content .research-advisor,
+.archive .research-advisor,
+.page__content .research-more,
+.archive .research-more,
+.page__content .teaching-links,
+.archive .teaching-links,
+.page__content .teaching-footnote,
+.archive .teaching-footnote,
+.page__content .card-action,
+.archive .card-action,
+.page__content .card-foot,
+.archive .card-foot,
+.page__content .cv-actions,
+.archive .cv-actions,
+.page__content .contact-direct,
+.archive .contact-direct,
+.page__content .contact-note,
+.archive .contact-note,
+.pub-links,
+.pub-venue,
+.pub-authors,
+.pub-title,
+.card-title,
+.rm-lead {
+  text-align: left;
+  -webkit-hyphens: manual;
+          hyphens: manual;
+}
+
+/* A playlist card carries only a title and an action, so nothing was pushing
+   the action down and short-titled cards left dead space at the bottom of an
+   equal-height grid row. Pinning the action to the bottom aligns every button
+   across a row and puts the slack above it, where it reads as spacing. */
+.page__content .card--video .card-title,
+.archive .card--video .card-title { margin-bottom: 0.9em; }
+
+.page__content .card--video .card-action,
+.archive .card--video .card-action { margin-top: auto; }
+
+/* The card body is only a title and an action, so a small left-aligned button
+   left the rest of its row visibly blank. A full-width action fills it and
+   reads as a deliberate call to action rather than leftover space. */
+.card--video .card-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.6em 0.85em;
+}
+
+/* --------------------------------------------------------------------------
+   15. Education (homepage) — same two-column rhythm as News and Awards.
+   -------------------------------------------------------------------------- */
+
+.page__content .edu-list,
+.archive .edu-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page__content .edu-list li,
+.archive .edu-list li {
+  display: flex;
+  gap: 1em;
+  align-items: baseline;
+  margin: 0;
+  padding: 0.2em 0 0.5em;
+  max-width: none;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.edu-year {
+  flex: 0 0 7.2em;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--rm-muted);
+  white-space: nowrap;
+}
+
+.edu-text { font-size: 0.97em; }
+
+.edu-note {
+  display: inline-block;
+  margin-top: 0.25em;
+  font-size: 0.93em;
+  color: var(--rm-muted);
+}
+
+@media screen and (max-width: 767px) {
+  .page__content .edu-list li,
+  .archive .edu-list li { display: block; }
+
+  .edu-year { display: block; margin-bottom: 0.15em; }
+}

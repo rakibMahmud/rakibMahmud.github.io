@@ -1,0 +1,64 @@
+---
+layout: archive
+title: "Experience & Service"
+permalink: /service/
+author_profile: true
+---
+
+{% include base_path %}
+
+<h2 class="teaching-section-head">Work Experience</h2>
+
+{% comment %}
+  Rendered from the _teaching collection so the course lists stay in one
+  place. Deliberately no per-course lecture links here — the playlists are
+  the Teaching page's job.
+{% endcomment %}
+<div class="teaching-list">
+{% assign items = site.teaching | sort: "date" | reverse %}
+{% for post in items %}
+  <div class="teaching-entry">
+    <h3 class="teaching-title"><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h3>
+
+    <p class="teaching-meta">
+      {{ post.venue }}{% if post.location %} · {{ post.location }}{% endif %}
+      {% if post.period %}<span class="teaching-sep">·</span>{{ post.period }}{% endif %}
+    </p>
+
+    {% if post.courses %}
+      <ul class="teaching-courses">
+        {% for c in post.courses %}<li>{{ c.name }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+
+    <p class="teaching-links">
+      {% if post.profile %}<a class="pub-chip" href="{{ post.profile }}">[Faculty profile]</a>{% endif %}
+      <a class="pub-chip" href="{{ base_path }}{{ post.url }}">[Details]</a>
+    </p>
+  </div>
+{% endfor %}
+</div>
+
+<h2 class="teaching-section-head">Service &amp; Leadership</h2>
+
+<div class="teaching-list">
+
+  <div class="teaching-entry">
+    <h3 class="teaching-title"><a href="https://drive.google.com/file/d/1PVdOGtaGpHu6CNHJsik2XccDe2vt06xM/view">Member Secretary and Founding Member — CSE KUET Research Society (KRS)</a></h3>
+    <p class="teaching-meta">Khulna University of Engineering &amp; Technology · Khulna, Bangladesh <span class="teaching-sep">·</span>2023 – 2024</p>
+    <ul class="teaching-courses">
+      <li><b>Co-founded</b> KUET's first research-focused student society.</li>
+      <li><b>Organized</b> workshops and seminars, and <b>mentored</b> students on research methodology and academic writing.</li>
+    </ul>
+  </div>
+
+  <div class="teaching-entry">
+    <h3 class="teaching-title"><a href="https://drive.google.com/file/d/1waZnwektQqNajfP-cj31Mzn7_0Hrm-wj/view">President — KUET Photographic Society (KUETPS)</a></h3>
+    <p class="teaching-meta">Khulna University of Engineering &amp; Technology · Khulna, Bangladesh <span class="teaching-sep">·</span>2023 – 2024</p>
+    <ul class="teaching-courses">
+      <li><b>Led</b> KUET's photography community, running workshops, photo walks, training sessions, exhibitions and competitions.</li>
+      <li><b>Built</b> and <b>maintained</b> the society's <a href="{{ base_path }}/portfolio/kuetps">web platform</a>.</li>
+    </ul>
+  </div>
+
+</div>

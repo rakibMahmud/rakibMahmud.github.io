@@ -5,32 +5,51 @@ permalink: /publications/
 author_profile: true
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
-
 {% include base_path %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
+{% if site.author.googlescholar %}
+  <p class="pub-scholar-note">Also listed on <a href="{{ site.author.googlescholar }}">Google Scholar</a>.</p>
 {% endif %}
 
+<div class="pub-list">
+{% assign pubs = site.publications | sort: "date" | reverse %}
+{% for post in pubs %}
+  <div class="pub-entry">
 
+    <div class="pub-thumb">
+      <a href="{{ base_path }}{{ post.url }}">
+        {% if post.thumbnail %}
+          <img src="{{ base_path }}{{ post.thumbnail }}" alt="{{ post.title | escape }}">
+        {% else %}
+          <span class="pub-thumb-empty">{{ post.year }}</span>
+        {% endif %}
+      </a>
+    </div>
 
+    <div class="pub-body">
+      <div class="pub-title">
+        <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+      </div>
+
+      {% if post.authors %}
+        <div class="pub-authors">{{ post.authors }}</div>
+      {% endif %}
+
+      <div class="pub-venue">
+        {{ post.venue }}{% if post.year %} ({{ post.year }}){% endif %}
+      </div>
+
+      <div class="pub-links">
+        {% if post.paperurl %}<a class="pub-chip" href="{{ post.paperurl }}">[Paper]</a>{% endif %}
+        {% if post.codeurl %}<a class="pub-chip" href="{{ post.codeurl }}">[Code]</a>{% endif %}
+        {% if post.projecturl %}<a class="pub-chip" href="{{ post.projecturl }}">[Project Page]</a>{% endif %}
+        {% if post.slidesurl %}<a class="pub-chip" href="{{ post.slidesurl }}">[Slides]</a>{% endif %}
+        {% if post.bibtexurl %}<a class="pub-chip" href="{{ post.bibtexurl }}">[BibTeX]</a>{% endif %}
+        <a class="pub-chip" href="{{ base_path }}{{ post.url }}">[Abstract]</a>
+        {% if post.note %}<span class="pub-note">{{ post.note }}</span>{% endif %}
+      </div>
+    </div>
+
+  </div>
+{% endfor %}
+</div>

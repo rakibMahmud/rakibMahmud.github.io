@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "CV"
+title: "Curriculum Vitae"
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -9,56 +9,21 @@ redirect_from:
 
 {% include base_path %}
 
-Education
-======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+<p class="cv-actions">
+  <a class="btn btn--primary" href="{{ base_path }}/files/CV_Rakib_Mahmud.pdf">Download PDF</a>
+  <a class="btn" href="{{ base_path }}/files/CV_Rakib_Mahmud.pdf" target="_blank" rel="noopener">Open in new tab</a>
+</p>
 
-Work experience
-======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
-
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
-
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+{% comment %}
+  Page images are rendered from the PDF by scripts/build-cv-preview.sh.
+  They are used instead of an <object> embed because inline PDF viewers do
+  not work on iOS Safari and several mobile browsers, which would leave a
+  blank grey box for a large share of visitors. Re-run that script after
+  replacing the PDF; this page needs no edit.
+{% endcomment %}
+<div class="cv-pages">
+  {% assign pages = site.static_files | where_exp: "f", "f.path contains '/images/cv/cv-page'" | sort: "path" %}
+  {% for f in pages %}
+    <img class="cv-page" src="{{ base_path }}{{ f.path }}" alt="Curriculum Vitae, page {{ forloop.index }}" loading="lazy">
+  {% endfor %}
+</div>

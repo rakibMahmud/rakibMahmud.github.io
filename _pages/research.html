@@ -1,0 +1,32 @@
+---
+layout: archive
+title: "Research Experience"
+permalink: /research/
+author_profile: true
+---
+
+{% include base_path %}
+
+<div class="research-list">
+{% assign items = site.research | sort: "period" | reverse %}
+{% for post in items %}
+  <div class="research-entry">
+    <h2 class="research-title"><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h2>
+
+    <p class="research-meta">
+      <span class="research-period">{{ post.period }}</span>
+      {% if post.status %}<span class="research-sep">·</span>{{ post.status }}{% endif %}
+    </p>
+
+    {% if post.advisor %}
+      <p class="research-advisor">Advisor: {{ post.advisor }}{% if post.affiliation %}, {{ post.affiliation }}{% endif %}</p>
+    {% endif %}
+
+    {% if post.excerpt %}
+      <p class="research-excerpt">{{ post.excerpt }}</p>
+    {% endif %}
+
+    <p class="research-more"><a href="{{ base_path }}{{ post.url }}">Read more →</a></p>
+  </div>
+{% endfor %}
+</div>

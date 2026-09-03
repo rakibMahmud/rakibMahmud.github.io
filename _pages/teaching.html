@@ -7,6 +7,31 @@ author_profile: true
 
 {% include base_path %}
 
-{% for post in site.teaching reversed %}
-  {% include archive-single.html %}
+<p class="teaching-section-note">I record my course lectures in Bangla and publish them on <a href="https://www.youtube.com/@RakibMahmud-nq8df">my YouTube channel</a>, so the material stays available to students who learn more comfortably in their first language. These playlists are works in progress — I add videos as time allows.</p>
+
+{% comment %}
+  Any course in _teaching/*.md carrying a `playlist:` URL is featured here.
+  Add `cover:` for an image; without one the card still renders.
+  Appointments live on the Service page, not here.
+{% endcomment %}
+
+<div class="card-grid">
+{% assign tposts = site.teaching | sort: "date" | reverse %}
+{% for post in tposts %}
+  {% for c in post.courses %}
+    {% if c.playlist %}
+      <a class="card card--video" href="{{ c.playlist }}">
+        {% if c.cover %}
+          <img class="card-cover" src="{{ base_path }}{{ c.cover }}" alt="{{ c.name | escape }} lecture playlist" loading="lazy">
+        {% endif %}
+        <div class="card-body">
+          <h3 class="card-title">{{ c.name }}</h3>
+          <p class="card-action"><span class="card-btn">Watch playlist &rarr;</span></p>
+        </div>
+      </a>
+    {% endif %}
+  {% endfor %}
 {% endfor %}
+</div>
+
+<p class="teaching-footnote">A full list of courses taught, with dates and responsibilities, is on the <a href="{{ base_path }}/service/">experience</a> page.</p>

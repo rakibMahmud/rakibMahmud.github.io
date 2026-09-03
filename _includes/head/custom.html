@@ -2,9 +2,13 @@
 
 <!-- start custom head snippets -->
 
-<!-- Support for Academicons -->
-<link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"></noscript>
+<!-- Support for Academicons.
+     Served from assets/ rather than the jsDelivr CDN the template ships with:
+     the CSS and its webfonts are already in this repo, and the local copy
+     cannot break when the CDN is blocked, rate-limited, or unreachable.
+     This is what makes the Google Scholar icon render. -->
+<link rel="preload" href="{{ base_path }}/assets/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ base_path }}/assets/css/academicons.min.css"></noscript>
 
 <!-- Support for Font Awesome -->
  <link rel="preload" href="{{ base_path }}/assets/css/fontawesome.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
