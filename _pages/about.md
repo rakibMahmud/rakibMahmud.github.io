@@ -10,9 +10,9 @@ redirect_from:
 About Me
 ======
 
-I am a Lecturer in the Department of Computer Science and Engineering at [Bangladesh University of Business and Technology (BUBT)](https://bubt.edu.bd/department/department-of-computer-science-engineering/faculty/profile/RAMA), Dhaka. I completed my B.Sc. in Computer Science and Engineering at [Khulna University of Engineering & Technology (KUET)](https://www.kuet.ac.bd/) in 2024. My research explores computer vision and deep learning for medical imaging, with an emphasis on models that stay interpretable under real constraints.
+I am a Lecturer in the Department of Computer Science and Engineering at [Bangladesh University of Business and Technology (BUBT)](https://bubt.edu.bd/department/department-of-computer-science-engineering/faculty/profile/RAMA), Dhaka. I completed my B.Sc. in Computer Science and Engineering at [Khulna University of Engineering & Technology (KUET)](https://www.kuet.ac.bd/) in 2024. 
 
-I am seeking PhD positions in Computer Vision / Machine Learning starting Fall 2027. My interests include medical image analysis, explainable AI, federated learning, and machine unlearning. Feel free to [get in touch](/contact/).
+I am seeking PhD positions in Computer Vision / NLP / Machine Learning starting Fall 2027. My interests include medical image analysis, explainable AI, federated learning, and machine unlearning. Feel free to [get in touch](/contact/).
 
 Education
 ======

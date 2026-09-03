@@ -21,7 +21,7 @@ Before you write
 
 A short note on what helps me reply usefully, depending on why you are writing.
 
-**Prospective PhD supervisors and lab members.** I am applying for PhD positions starting Fall 2027 in computer vision, machine learning, and trustworthy AI. If you are considering me, my [CV](/cv/) and [publications](/publications/) cover the record, and my [research](/research/) page describes each project in more depth than the papers do. I am happy to send transcripts, a research statement, or code for any project on request.
+**Prospective PhD supervisors and lab members.** I am applying for PhD positions starting Fall 2027 in computer vision, machine learning, and trustworthy AI. If you are considering me, my [CV](/cv/) and [publications](/publications/) cover the record. I am happy to send transcripts, a research statement, or code for any project on request.
 
 **Research collaboration.** Tell me the problem you are working on and where you think my work connects. I am most useful on medical image analysis, explainable AI, and kernel or ensemble methods under limited data and compute.
 

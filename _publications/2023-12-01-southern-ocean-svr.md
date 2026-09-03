@@ -13,6 +13,20 @@ excerpt: "Two novel SVR kernels that outperform standard alternatives when forec
 citation: 'Asif Mohammed Saad, Rakib Mahmud, and Sunanda Das. (2023). &quot;Forecasting Crucial Biogeochemical Indicators of the Southern Ocean for Climate Monitoring Using Modified Kernel-Based Support Vector Regression.&quot; <i>International Conference on Big Data, IoT and Machine Learning</i>. Springer Nature Singapore.'
 ---
 
-The Southern Ocean absorbs a disproportionate share of anthropogenic carbon, so forecasting its biogeochemical state is directly relevant to climate monitoring. But the measurement record is sparse and irregular, which rules out data-hungry methods.
-
-This paper forecasts key indicators — pH at 25 °C and nitrate concentration — using support vector regression with correlation-based feature selection to identify which oceanographic variables actually carry predictive signal. The main contribution is on the kernel side: we propose two custom kernels, a **Hyperbolic Sine** kernel and a **Gaussian Matrix Multiplier** kernel, both of which achieve better predictive performance than the standard RBF, polynomial, and sigmoid kernels on this data.
+The ocean is a massive expanse of saltwater that spans over
+70.8% of the Earth’s surface and holds nearly 97% of the planet’s wa-
+ter. The Southern Ocean is remarkable because it influences worldwide
+climate patterns and plays a key role in storing a tremendous amount
+of heat, carbon dioxide, and nutrients. As a result, we are focusing our
+efforts on solving the mysteries surrounding the Southern Ocean. There-
+fore, in this study, we attempted to forecast crucial Biogeochemical in-
+dicators for climate monitoring such as pH (25°C), Nitrate content, and
+Relative Density of seawater. More research and analysis on these three
+components might be beneficial because they are critical aspects for ecol-
+ogy, marine biochemistry, and overall climate patterns. This study is con-
+ducted to develop new custom kernels (Hyperbolic Sine Kernel, Gaussian
+Matrix Multiplier Kernel) for mapping the features into desirable space,
+effectively making assumptions based on existing relevant features using
+SVR technique. Further, comparing their efficiency against present ker-
+nels (on certain constraints) across three dimensions and suggesting a
+significantly higher performing kernel.
