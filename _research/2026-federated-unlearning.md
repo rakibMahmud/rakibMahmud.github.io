@@ -2,6 +2,7 @@
 title: "Federated Unlearning Is Not Fail-Safe: A Measurement Study of Verifying, Attributing and Recovering Forgetting Under Client Faults"
 collection: research
 permalink: /research/federated-unlearning
+order: 1
 period: "2026"
 status: "Ongoing"
 advisor: "Dr. A. B. M. Alim Al Islam"

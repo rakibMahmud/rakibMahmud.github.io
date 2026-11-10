@@ -8,7 +8,8 @@ author_profile: true
 {% include base_path %}
 
 <div class="research-list">
-{% assign items = site.research | sort: "period" | reverse %}
+{% comment %} Entries are listed by the `order` number in each file (1 = top). {% endcomment %}
+{% assign items = site.research | sort: "order" %}
 {% for post in items %}
   <div class="research-entry">
     <h2 class="research-title"><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h2>

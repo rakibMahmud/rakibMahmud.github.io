@@ -2,8 +2,9 @@
 title: "Multi-Class Chest Disease Classification from X-Rays Using PCA-Enhanced Vision Transformers"
 collection: research
 permalink: /research/chest-disease-vit
+order: 2
 period: "2024 – 2025"
-status: "Ongoing"
+status: "Under review at ICEEICT"
 advisor: "Dr. Ch. Md. Rakin Haider"
 affiliation: "Department of Computer Science and Engineering, BUET"
 excerpt: "Developed a deep learning framework for multi-class chest disease classification (COVID-19, pneumonia, tuberculosis, normal) from X-ray images, and implemented a hybrid Vision Transformer–EfficientNet ensemble with PCA-based feature reduction and Grad-CAM/LIME interpretability."
