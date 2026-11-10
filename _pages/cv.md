@@ -24,6 +24,6 @@ redirect_from:
 <div class="cv-pages">
   {% assign pages = site.static_files | where_exp: "f", "f.path contains '/images/cv/cv-page'" | sort: "path" %}
   {% for f in pages %}
-    <img class="cv-page" src="{{ base_path }}{{ f.path }}" alt="Curriculum Vitae, page {{ forloop.index }}" loading="lazy">
+    <img class="cv-page" src="{{ base_path }}{{ f.path }}?v={{ f.modified_time | date: '%s' }}" alt="Curriculum Vitae, page {{ forloop.index }}" loading="lazy">
   {% endfor %}
 </div>

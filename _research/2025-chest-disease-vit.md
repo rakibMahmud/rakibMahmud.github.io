@@ -2,7 +2,7 @@
 title: "Multi-Class Chest Disease Classification from X-Rays Using PCA-Enhanced Vision Transformers"
 collection: research
 permalink: /research/chest-disease-vit
-period: "2025 – present"
+period: "2024 – 2025"
 status: "Ongoing"
 advisor: "Dr. Ch. Md. Rakin Haider"
 affiliation: "Department of Computer Science and Engineering, BUET"
