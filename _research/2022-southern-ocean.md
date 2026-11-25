@@ -2,7 +2,7 @@
 title: "Analysis of Biogeochemical Indicators in the Southern Ocean"
 collection: research
 permalink: /research/southern-ocean
-order: 5
+order: 6
 period: "2022 – 2023"
 status: "Published at Springer BIM 2023"
 advisor: "Sunanda Das"

@@ -2,7 +2,7 @@
 title: "Deconstructing the Garbage-First Collector: A Python Simulation Study with an Adaptive Hot-Card Threshold"
 collection: research
 permalink: /research/garbage-first-collector
-order: 3
+order: 4
 period: "2024 – 2025"
 status: "Accepted at ICCA 2026 (ACM)"
 advisor: "Dr. Rifat Shahriyar"

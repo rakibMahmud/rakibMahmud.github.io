@@ -2,7 +2,7 @@
 title: "A Hybrid Deep Learning Approach with Explainable AI for Bangladeshi Birds Classification"
 collection: research
 permalink: /research/bangladeshi-birds
-order: 4
+order: 5
 period: "2023 – 2024"
 status: "Undergraduate thesis · Published at IEEE NCIM 2025"
 advisor: "Dr. Sk Md Masudul Ahsan"

@@ -2,7 +2,7 @@
 title: "Multi-Class Chest Disease Classification from X-Rays Using PCA-Enhanced Vision Transformers"
 collection: research
 permalink: /research/chest-disease-vit
-order: 2
+order: 3
 period: "2024 – 2025"
 status: "Under review at ICEEICT"
 advisor: "Dr. Ch. Md. Rakin Haider"
