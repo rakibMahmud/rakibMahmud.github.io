@@ -7,7 +7,7 @@ date: 2026-11-01
 year: 2026
 authors: "Md. Maruf Bangabashi, Tahmid Hasan, <b>Rakib Mahmud</b>"
 venue: "12th IEEE International Conference on Sustainable Technologies and Engineering (i-COSTE), IEEE"
-note: "Accepted · Second Best Paper Award"
+note: "Accepted, to appear · Second Best Paper Award"
 thumbnail: /images/publications/icoste2026.png
 excerpt: "A leakage audit of the Kaggle Brain Tumor MRI benchmark: patient-ID recovery and near-duplicate clustering show that naive splits overstate accuracy."
 citation: 'Md. Maruf Bangabashi, Tahmid Hasan, and Rakib Mahmud. (2026). &quot;Pooled and Compromised: A Leakage Audit of a Popular MRI Benchmark.&quot; <i>12th IEEE International Conference on Sustainable Technologies and Engineering (i-COSTE 2026)</i>. IEEE.'
