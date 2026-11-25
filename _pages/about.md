@@ -43,6 +43,7 @@ News
 
 <div class="news-scroll">
   <ul class="news-list">
+    <li><span class="news-date">Nov 2026</span><span class="news-text">Our paper <a href="/publication/2026-11-01-mri-leakage-audit"><i>Pooled and Compromised: A Leakage Audit of a Popular MRI Benchmark</i></a> received the <b>Second Best Paper Award</b> at <b>IEEE i-COSTE 2026</b>.</span></li>
     <li><span class="news-date">Jan 2026</span><span class="news-text">Our paper on the Garbage-First collector is accepted at <b>ICCA 2026</b> (ACM), with co-authors from BUET.</span></li>
     <li><span class="news-date">Jul 2025</span><span class="news-text">Joined <b>BUBT</b> as a Lecturer in the Department of Computer Science and Engineering.</span></li>
     <li><span class="news-date">Jan 2025</span><span class="news-text">Our paper on Bangladeshi birds classification is published at <b>IEEE NCIM 2025</b>.</span></li>
@@ -58,6 +59,10 @@ Awards
 ======
 
 <ul class="award-list">
+  <li>
+    <span class="award-year">2026</span>
+    <span class="award-text"><b><a href="/publication/2026-11-01-mri-leakage-audit">Second Best Paper Award</a></b>, 12th IEEE International Conference on Sustainable Technologies and Engineering (i-COSTE 2026) — for the paper <i>Pooled and Compromised: A Leakage Audit of a Popular MRI Benchmark</i>.</span>
+  </li>
   <li>
     <span class="award-year">2018 – 2020</span>
     <span class="award-text"><b><a href="https://drive.google.com/drive/folders/1k_0MlIeYfEvu694DslhtLgn0HWtBt8mX">Dean's Award</a></b>, Khulna University of Engineering &amp; Technology — awarded for freshman and sophomore year academic performance (2018–19 and 2019–20).</span>
