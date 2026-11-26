@@ -5,8 +5,8 @@ permalink: /research/chest-disease-vit
 order: 3
 period: "2024 – 2025"
 status: "Under review at ICEEICT"
-advisor: "Dr. Ch. Md. Rakin Haider"
-affiliation: "Department of Computer Science and Engineering, BUET"
+advisor: "Tahmid Hasan"
+affiliation: "Department of Computer Science and Engineering, BUBT"
 excerpt: "Developed a deep learning framework for multi-class chest disease classification (COVID-19, pneumonia, tuberculosis, normal) from X-ray images, and implemented a hybrid Vision Transformer–EfficientNet ensemble with PCA-based feature reduction and Grad-CAM/LIME interpretability."
 ---
 
